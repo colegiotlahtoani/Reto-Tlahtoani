@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reto Tlahtoani - ¡Aventuras de aprendizaje mensuales!</title>
+    <style>
+        /* Estilos generales */
+        :root {
+            --color-primario: #FF6B35; /* Naranja vibrante */
+            --color-secundario: #00A5E0; /* Azul divertido */
+            --color-acento: #FFD166; /* Amarillo energía */
+            --color-texto: #333333;
+            --color-fondo: #F8F9FA;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Chilanka', cursive, sans-serif;
+        }
+
+        body {
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            line-height: 1.6;
+        }
+
+        /* Header heroico */
+        .hero {
+            background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="3" fill="white" opacity="0.3"/><circle cx="80" cy="40" r="2" fill="white" opacity="0.3"/><circle cx="60" cy="80" r="4" fill="white" opacity="0.3"/></svg>');
+        }
+
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Navegación */
+        nav {
+            background: white;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn.active {
+            background: var(--color-acento);
+            color: var(--color-texto);
+        }
+
+        /* Secciones */
+        .section {
+            display: none;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Tarjetas de retos */
+        .retos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .reto-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .reto-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-acento);
+        }
+
+        .reto-card h3 {
+            color: var(--color-primario);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .reto-card .badge {
+            background: var(--color-secundario);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        /* Galería */
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .galeria-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .galeria-item:hover {
+            transform: scale(1.05);
+        }
+
+        .galeria-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Ranking */
+        .ranking-list {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .ranking-item:last-child {
+            border-bottom: none;
+        }
+
+        .ranking-pos {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--color-primario);
+            margin-right: 1rem;
+            min-width: 30px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-texto);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Hero -->
+    <header class="hero">
+        <div class="logo">🏆</div>
+        <h1>Reto Tlahtoani</h1>
+        <p class="subtitle">¡Aventuras mensuales para pequeños grandes héroes!</p>
+    </header>
+
+    <!-- Navegación -->
+    <nav>
+        <div class="nav-container">
+            <button class="nav-btn active" onclick="mostrarSeccion('inicio')">Inicio</button>
+            <button class="nav-btn" onclick="mostrarSeccion('retos')">Retos Mensuales</button>
+            <button class="nav-btn" onclick="mostrarSeccion('galeria')">Galería de Héroes</button>
+            <button class="nav-btn" onclick="mostrarSeccion('ranking')">Ranking</button>
+            <button class="nav-btn" onclick="mostrarSeccion('recursos')">Recursos</button>
+        </div>
+    </nav>
+
+    <!-- Sección Inicio -->
+    <section id="inicio" class="section active">
+        <h2>¡Bienvenidos, Pequeños Héroes!</h2>
+        <p>Este mes nos convertimos en <strong>Rescatistas del Planeta</strong>. ¡La Tierra necesita nuestra ayuda!</p>
+        
+        <div style="text-align: center; margin: 2rem 0;">
+            <div style="background: white; padding: 2rem; border-radius: 15px; display: inline-block; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <h3 style="color: var(--color-primario);">⏰ Tiempo restante para este reto:</h3>
+                <div id="contador" style="font-size: 2rem; font-weight: bold; color: var(--color-secundario);">
+                    28 días 05:12:45
+                </div>
+            </div>
+        </div>
+
+        <div style="background: linear-gradient(135deg, var(--color-acento), #FF9A3D); padding: 2rem; border-radius: 15px; text-align: center; color: white; margin: 2rem 0;">
+            <h3>🎬 Mira el video de presentación del reto</h3>
+            <div style="background: #333; height: 200px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin: 1rem auto; max-width: 400px;">
+                <span style="font-size: 3rem;">▶️</span>
+            </div>
+            <p>¡Descubre la misión secreta de este mes!</p>
+        </div>
+    </section>
+
+    <!-- Sección Retos -->
+    <section id="retos" class="section">
+        <h2>Retos Mensuales</h2>
+        <p>Elige tu aventura de aprendizaje</p>
+        
+        <div class="retos-grid">
+            <div class="reto-card">
+                <span class="badge">Activo</span>
+                <h3>🌍 Rescatistas del Planeta</h3>
+                <p>Conviértete en un superhéroe ambiental. Aprende sobre reciclaje y salva nuestro planeta.</p>
+                <p><strong>Misiones:</strong> Investigación, Arte reciclado, Brigada de limpieza</p>
+                <button style="background: var(--color-primario); color: white; border: none; padding: 0.5rem 1rem; border-radius: 20px; margin-top: 1rem; cursor: pointer;">¡Comenzar!</button>
+            </div>
+            
+            <div class="reto-card">
+                <span class="badge">Próximamente</span>
+                <h3>🎬 YouTuber por un Mes</h3>
+                <p>Crea tu propio canal y aprende a comunicar ideas divertidas.</p>
+                <p><strong>Misiones:</strong> Brainstorming, Guión, Grabación, Estreno</p>
+            </div>
+            
+            <div class="reto-card">
+                <span class="badge">Próximamente</span>
+                <h3>👨‍🍳 Chef de la Historia</h3>
+                <p>Viaja en el tiempo a través de la comida y descubre culturas antiguas.</p>
+                <p><strong>Misiones:</strong> Investigación, Diseño, Creación culinaria</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Galería -->
+    <section id="galeria" class="section">
+        <h2>Galería de Héroes</h2>
+        <p>Mira las increíbles creaciones de otros equipos</p>
+        
+        <div class="galeria-grid">
+            <div class="galeria-item">
+                <div style="background: var(--color-primario); height: 150px; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">📸</div>
+            </div>
+            <div class="galeria-item">
+                <div style="background: var(--color-secundario); height: 150px; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">🎥</div>
+            </div>
+            <div class="galeria-item">
+                <div style="background: var(--color-acento); height: 150px; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">🖼️</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Ranking -->
+    <section id="ranking" class="section">
+        <h2>🏆 Ranking de Héroes</h2>
+        <p>Los equipos más destacados del mes</p>
+        
+        <div class="ranking-list">
+            <div class="ranking-item">
+                <div class="ranking-pos">1°</div>
+                <div>
+                    <strong>Los Guardianes del Planeta</strong><br>
+                    <small>3ro Primaria - 850 puntos</small>
+                </div>
+            </div>
+            <div class="ranking-item">
+                <div class="ranking-pos">2°</div>
+                <div>
+                    <strong>Los Super Recicladores</strong><br>
+                    <small>2do Primaria - 780 puntos</small>
+                </div>
+            </div>
+            <div class="ranking-item">
+                <div class="ranking-pos">3°</div>
+                <div>
+                    <strong>Los Amigos de la Tierra</strong><br>
+                    <small>1ro Primaria - 720 puntos</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Recursos -->
+    <section id="recursos" class="section">
+        <h2>📚 Recursos para Héroes</h2>
+        <p>Todo lo que necesitas para completar tus misiones</p>
+        
+        <div class="retos-grid">
+            <div class="reto-card">
+                <h3>📖 Guía del Rescatista</h3>
+                <p>Aprende todo sobre reciclaje y cómo salvar el planeta.</p>
+                <button style="background: var(--color-secundario); color: white; border: none; padding: 0.5rem 1rem; border-radius: 20px; margin-top: 1rem; cursor: pointer;">Descargar PDF</button>
+            </div>
+            
+            <div class="reto-card">
+                <h3>🎥 Video Tutorial</h3>
+                <p>Cómo hacer una escultura con material reciclado.</p>
+                <button style="background: var(--color-secundario); color: white; border: none; padding: 0.5rem 1rem; border-radius: 20px; margin-top: 1rem; cursor: pointer;">Ver Video</button>
+            </div>
+            
+            <div class="reto-card">
+                <h3>🛠️ Herramientas Digitales</h3>
+                <p>Apps y programas para hacer tus proyectos más divertidos.</p>
+                <button style="background: var(--color-secundario); color: white; border: none; padding: 0.5rem 1rem; border-radius: 20px; margin-top: 1rem; cursor: pointer;">Explorar</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Reto Tlahtoani - Colegio Tlahtoani GDL</p>
+        <p>¡Formando pequeños héroes del aprendizaje!</p>
+    </footer>
+
+    <script>
+        // Función para cambiar entre secciones
+        function mostrarSeccion(seccionId) {
+            // Ocultar todas las secciones
+            document.querySelectorAll('.section').forEach(seccion => {
+                seccion.classList.remove('active');
+            });
+            
+            // Quitar active de todos los botones
+            document.querySelectorAll('.nav-btn').forEach(boton => {
+                boton.classList.remove('active');
+            });
+            
+            // Mostrar sección seleccionada
+            document.getElementById(seccionId).classList.add('active');
+            
+            // Activar botón correspondiente
+            event.target.classList.add('active');
+        }
+
+        // Contador regresivo simple (ejemplo)
+        function actualizarContador() {
+            const contador = document.getElementById('contador');
+            // Aquí iría la lógica real del contador
+            contador.textContent = "28 días 05:12:45";
+        }
+
+        // Actualizar contador cada segundo
+        setInterval(actualizarContador, 1000);
+        actualizarContador();
+
+        // Efectos interactivos simples
+        document.querySelectorAll('.reto-card').forEach(card => {
+            card.addEventListener('click', function() {
+                if(this.querySelector('.badge').textContent === 'Activo') {
+                    alert('¡Excelente elección! Redirigiendo al Reto Activo...');
+                } else {
+                    alert('¡Próximamente! Este reto estará disponible pronto.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
