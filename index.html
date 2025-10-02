@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reto Tlahtoani – Desarrollo Personal para Pequeños Héroes</title>
+  <title>Reto Tlahtoani – Pequeños Héroes del Desarrollo Personal</title>
 
   <!-- Fuente Inter -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -29,11 +29,8 @@
     /* Hero */
     .hero{
       background:var(--gradiente-hero);
-      color:#fff;
-      padding:2.5rem 1rem;
-      text-align:center;
-      border-bottom-left-radius:24px;
-      border-bottom-right-radius:24px;
+      color:#fff;padding:2.5rem 1rem;text-align:center;
+      border-bottom-left-radius:24px;border-bottom-right-radius:24px;
       box-shadow:0 8px 32px var(--shadow);
     }
     .logo{font-size:3rem;margin-bottom:.5rem;text-shadow:0 4px 10px rgba(0,0,0,.25);}
@@ -42,11 +39,9 @@
 
     /* Nav */
     nav{
-      background:#fff;
-      position:sticky;top:0;z-index:10;
+      background:#fff;position:sticky;top:0;z-index:10;
       box-shadow:0 4px 12px var(--shadow);
-      padding:.8rem 1rem;
-      display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;
+      padding:.8rem 1rem;display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;
     }
     .nav-btn{
       border:none;background:transparent;
@@ -91,12 +86,6 @@
     .reto-card:hover{transform:translateY(-5px);border-color:var(--primario);}
     .reto-card h3{font-weight:700;color:var(--primario);margin:.5rem 0;}
     .reto-card p{font-size:.95rem;margin-top:.3rem;}
-    .badge{
-      background:var(--secundario);color:#fff;
-      padding:.3rem .8rem;border-radius:20px;font-size:.75rem;
-      font-weight:600;display:inline-block;margin-bottom:.5rem;
-      box-shadow:0 4px 12px rgba(0,0,0,.15);
-    }
 
     /* Botón CTA */
     .btn-cta{
@@ -122,18 +111,6 @@
     .galeria-item:hover{transform:scale(1.03);}
     .galeria-item div{height:150px;display:flex;align-items:center;justify-content:center;font-size:3rem;color:#fff;}
 
-    /* Ranking */
-    .ranking-list{
-      background:#fff;padding:1.2rem;border-radius:16px;
-      box-shadow:0 4px 20px var(--shadow);margin-top:1rem;
-    }
-    .ranking-item{
-      display:flex;align-items:center;
-      padding:.8rem 0;border-bottom:1px solid var(--gris-medio);
-    }
-    .ranking-item:last-child{border-bottom:none;}
-    .ranking-pos{font-weight:800;color:var(--primario);font-size:1.4rem;margin-right:1rem;}
-
     /* Footer */
     footer{
       text-align:center;background:var(--texto);color:#fff;
@@ -142,6 +119,25 @@
       font-size:.9rem;
     }
     @media(max-width:768px){h1{font-size:2rem}.subtitle{font-size:1rem}}
+
+    /* Modal */
+    .modal{
+      position:fixed;top:0;left:0;width:100%;height:100%;
+      background:rgba(0,0,0,.5);display:none;justify-content:center;align-items:center;z-index:1000;
+    }
+    .modal-content{
+      background:#fff;max-width:500px;width:90%;
+      border-radius:16px;padding:1.5rem;box-shadow:0 8px 32px rgba(0,0,0,.3);
+      animation:fadeIn .3s ease;
+    }
+    .modal-content h3{color:var(--primario);margin-bottom:1rem;}
+    .modal-content p{margin-bottom:1rem;font-size:1rem;line-height:1.5;}
+    .close-btn{
+      background:var(--secundario);color:#fff;
+      border:none;padding:.5rem 1rem;border-radius:8px;
+      cursor:pointer;font-weight:600;
+    }
+    .close-btn:hover{opacity:.9;}
   </style>
 </head>
 <body>
@@ -150,90 +146,34 @@
   <header class="hero">
     <div class="logo">🌟</div>
     <h1>Reto Tlahtoani</h1>
-    <p class="subtitle">Desarrollo personal para pequeños grandes héroes</p>
+    <p class="subtitle">Desarrollo personal para todos los niños y niñas</p>
   </header>
 
-  <!-- Navegación -->
+  <!-- Nav -->
   <nav>
     <button class="nav-btn active" onclick="mostrarSeccion('inicio')">Inicio</button>
     <button class="nav-btn" onclick="mostrarSeccion('retos')">Retos</button>
     <button class="nav-btn" onclick="mostrarSeccion('galeria')">Galería</button>
-    <button class="nav-btn" onclick="mostrarSeccion('ranking')">Ranking</button>
     <button class="nav-btn" onclick="mostrarSeccion('recursos')">Recursos</button>
   </nav>
 
-  <!-- Sección Inicio -->
+  <!-- Secciones -->
   <section id="inicio" class="section active">
     <h2>¡Bienvenidos, Pequeños Héroes!</h2>
-    <p style="text-align:center;">Cada mes te proponemos <strong>retos divertidos</strong> que te ayudarán a crecer, cuidar de ti, de los demás y del planeta. 🌱💫</p>
-    <div class="card" style="text-align:center;margin-top:2rem;">
-      <h3 style="color:var(--primario);">⏰ Tiempo restante del reto actual</h3>
-      <div id="contador" style="font-size:2rem;font-weight:800;color:var(--secundario);margin-top:.5rem;">28 días 05:12:45</div>
-    </div>
+    <p style="text-align:center;">Aquí encontrarás <strong>retos divertidos y prácticos</strong> para mejorar hábitos, emociones y cuidar el planeta. 🌎💪</p>
   </section>
 
-  <!-- Sección Retos -->
   <section id="retos" class="section">
-    <h2>🌈 Retos de Desarrollo Personal</h2>
-    <p style="text-align:center;">Elige tu misión y conviértete en un héroe día a día</p>
-    <div class="retos-grid">
-      <!-- Retos destacados -->
-      <div class="reto-card">
-        <span class="badge">Activo</span>
-        <h3>💧 Héroes del Agua</h3>
-        <p>Beber 5 vasos de agua al día y registrar tu progreso con stickers.</p>
-        <a class="btn-cta" href="#">¡Unirme!</a>
-      </div>
-
-      <div class="reto-card">
-        <span class="badge" style="background:var(--acento);color:var(--texto);">Nuevo</span>
-        <h3>👜 Supermochila</h3>
-        <p>Mantén tu mochila ordenada cada día por una semana.</p>
-        <a class="btn-cta" href="#">¡Empezar!</a>
-      </div>
-
-      <div class="reto-card">
-        <h3>😊 Reto Sonrisa</h3>
-        <p>Saluda a 3 personas nuevas con una gran sonrisa todos los días.</p>
-        <a class="btn-cta" href="#">¡Sonríe!</a>
-      </div>
-
-      <div class="reto-card">
-        <h3>🌳 Mini Eco-Héroes</h3>
-        <p>Planta una semilla en casa o en el aula y cuídala por dos semanas.</p>
-        <a class="btn-cta" href="#">¡Plantar!</a>
-      </div>
-
-      <div class="reto-card">
-        <h3>📓 Diario de Gratitud</h3>
-        <p>Escribe o dibuja cada día algo por lo que estés agradecido.</p>
-        <a class="btn-cta" href="#">¡Comenzar!</a>
-      </div>
-
-      <div class="reto-card">
-        <h3>🫶 Respira Hondo</h3>
-        <p>Practica 2 minutos de respiración profunda cada mañana en el aula.</p>
-        <a class="btn-cta" href="#">¡Respirar!</a>
-      </div>
-
-      <div class="reto-card">
-        <h3>👫 Cadena de Gracias</h3>
-        <p>Da las gracias de forma especial a 3 personas diferentes cada día.</p>
-        <a class="btn-cta" href="#">¡Agradecer!</a>
-      </div>
-
-      <div class="reto-card">
-        <h3>🚯 Reto Cero Plástico</h3>
-        <p>Usa solo botellas reutilizables por una semana completa.</p>
-        <a class="btn-cta" href="#">¡Aceptar Reto!</a>
-      </div>
+    <h2>🌈 Retos Activos</h2>
+    <p style="text-align:center;">Elige tu misión y aprende mientras te diviertes</p>
+    <div class="retos-grid" id="retosGrid">
+      <!-- Se llenará con JS -->
     </div>
   </section>
 
-  <!-- Sección Galería -->
   <section id="galeria" class="section">
-    <h2>📸 Galería de Héroes</h2>
-    <p style="text-align:center;">Mira cómo otros niños completan sus retos</p>
+    <h2>📸 Galería</h2>
+    <p style="text-align:center;">Muestra cómo vives tus retos</p>
     <div class="galeria-grid">
       <div class="galeria-item"><div style="background:var(--primario);">🌱</div></div>
       <div class="galeria-item"><div style="background:var(--secundario);">📖</div></div>
@@ -241,31 +181,13 @@
     </div>
   </section>
 
-  <!-- Sección Ranking -->
-  <section id="ranking" class="section">
-    <h2>🏆 Ranking de Héroes</h2>
-    <p style="text-align:center;">Los equipos y niños que más retos completaron este mes</p>
-    <div class="ranking-list">
-      <div class="ranking-item">
-        <div class="ranking-pos">1°</div><div><strong>Guardianes del Agua</strong><br><small>120 puntos</small></div>
-      </div>
-      <div class="ranking-item">
-        <div class="ranking-pos">2°</div><div><strong>Pequeños Zen</strong><br><small>100 puntos</small></div>
-      </div>
-      <div class="ranking-item">
-        <div class="ranking-pos">3°</div><div><strong>Eco-Aventureros</strong><br><small>85 puntos</small></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Sección Recursos -->
   <section id="recursos" class="section">
     <h2>📚 Recursos</h2>
-    <p style="text-align:center;">Material de apoyo para completar tus retos</p>
+    <p style="text-align:center;">Usa estas herramientas para completar tus retos</p>
     <div class="retos-grid">
       <div class="reto-card">
         <h3>📖 Guía para Pequeños Héroes</h3>
-        <p>Consejos para cuidar de ti, de los demás y del planeta.</p>
+        <p>Consejos para hábitos saludables y ecológicos.</p>
         <a class="btn-cta" href="#">Descargar PDF</a>
       </div>
       <div class="reto-card">
@@ -275,16 +197,25 @@
       </div>
       <div class="reto-card">
         <h3>🖍️ Plantillas Creativas</h3>
-        <p>Para tus diarios, stickers y registros de retos.</p>
+        <p>Para diarios, stickers y registros de retos.</p>
         <a class="btn-cta" href="#">Descargar</a>
       </div>
     </div>
   </section>
 
   <footer>
-    <p>© 2025 Reto Tlahtoani – Desarrollo Personal Infantil</p>
-    <p>¡Formando hábitos y valores para un mejor futuro! 🌟</p>
+    <p>© 2025 Reto Tlahtoani – Plataforma de Desarrollo Personal Infantil</p>
+    <p>¡Motivando a niños de todas partes a ser héroes cada día! 🌟</p>
   </footer>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <h3 id="modalTitle"></h3>
+      <p id="modalDesc"></p>
+      <button class="close-btn" onclick="cerrarModal()">Cerrar</button>
+    </div>
+  </div>
 
   <script>
     function mostrarSeccion(id){
@@ -293,10 +224,36 @@
       document.getElementById(id).classList.add('active');
       event.target.classList.add('active');
     }
-    // contador demo
-    function actualizarContador(){document.getElementById('contador').textContent="28 días 05:12:45";}
-    setInterval(actualizarContador,1000);
-    actualizarContador();
+
+    // Lista de retos
+    const retos = [
+      {titulo:'💧 Héroes del Agua', desc:'Bebe 5 vasos de agua al día y registra tu progreso. Ayuda a tu cuerpo a estar fuerte y sano.'},
+      {titulo:'👜 Supermochila', desc:'Mantén tu mochila ordenada cada día por una semana. Aprenderás organización y responsabilidad.'},
+      {titulo:'😊 Reto Sonrisa', desc:'Saluda a 3 personas nuevas con una sonrisa cada día. ¡Hacer sonreír a otros es contagioso!'},
+      {titulo:'🌳 Mini Eco-Héroes', desc:'Planta una semilla y cuídala por dos semanas. Descubre la magia de hacer crecer vida.'},
+      {titulo:'📓 Diario de Gratitud', desc:'Escribe o dibuja cada día algo por lo que estés agradecido. Mejora tu felicidad y paz interior.'},
+      {titulo:'🫶 Respira Hondo', desc:'Practica 2 minutos de respiración profunda cada mañana para sentirte más tranquilo y concentrado.'},
+      {titulo:'👫 Cadena de Gracias', desc:'Agradece cada día a 3 personas diferentes por algo especial que hayan hecho.'},
+      {titulo:'🚯 Reto Cero Plástico', desc:'Usa solo botellas reutilizables por una semana completa para ayudar al planeta.'}
+    ];
+
+    const grid = document.getElementById('retosGrid');
+    retos.forEach(r=>{
+      const card = document.createElement('div');
+      card.className='reto-card';
+      card.innerHTML=`<h3>${r.titulo}</h3><p>${r.desc}</p><button class="btn-cta" onclick="abrirModal('${r.titulo}','${r.desc}')">Empezar</button>`;
+      grid.appendChild(card);
+    });
+
+    function abrirModal(titulo,desc){
+      document.getElementById('modalTitle').textContent = titulo;
+      document.getElementById('modalDesc').textContent = desc + " \n\nCuando completes este reto, ¡comparte tu experiencia en la galería y sigue practicando todos los días!";
+      document.getElementById('modal').style.display='flex';
+    }
+
+    function cerrarModal(){
+      document.getElementById('modal').style.display='none';
+    }
   </script>
 </body>
 </html>
