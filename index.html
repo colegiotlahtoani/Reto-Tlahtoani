@@ -1,337 +1,287 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reto Tlahtoani – Pequeños Héroes del Desarrollo Personal</title>
-
-  <!-- Fuente Inter -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-
+  <title>Reto Tlahtoani - Aventuras de Desarrollo Personal</title>
   <style>
-    :root{
-      --primario:#FF6B35;     
-      --secundario:#00A5E0;   
-      --acento:#FFD166;       
-      --verde:#43A047;        
-      --gris-bg:#FAFAFA;
-      --gris-card:#FFF;
-      --gris-medio:#E0E0E0;
-      --texto:#212121;
-      --shadow:rgba(33,33,33,.12);
-      --gradiente-hero:linear-gradient(135deg,var(--primario),var(--secundario));
-      --gradiente-boton:linear-gradient(135deg,var(--primario),var(--acento));
+    :root {
+      --color-primario: #FF6B35;
+      --color-secundario: #00A5E0;
+      --color-acento: #FFD166;
+      --color-texto: #333333;
+      --color-fondo: #F8F9FA;
+      --shadow-suave: rgba(0, 0, 0, 0.1);
     }
 
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
-    body{background:var(--gris-bg);color:var(--texto);line-height:1.6;}
-
-    /* Hero */
-    .hero{
-      background:var(--gradiente-hero);
-      color:#fff;padding:3rem 1rem;text-align:center;
-      border-bottom-left-radius:40px;border-bottom-right-radius:40px;
-      box-shadow:0 10px 40px rgba(0,0,0,.25);
-      position:relative;
-    }
-    .logo{font-size:3.5rem;margin-bottom:.5rem;text-shadow:0 4px 10px rgba(0,0,0,.25);}
-    h1{font-weight:800;font-size:2.8rem;}
-    .subtitle{font-size:1.2rem;margin-top:.5rem;opacity:.95;font-weight:500;max-width:600px;margin-inline:auto;}
-
-    /* Nav */
-    nav{
-      background:#fff;position:sticky;top:0;z-index:10;
-      box-shadow:0 4px 12px var(--shadow);
-      padding:.8rem 1rem;display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;
-    }
-    .nav-btn{
-      border:none;background:transparent;
-      padding:.5rem 1.2rem;font-weight:600;color:var(--texto);
-      border-radius:20px;cursor:pointer;transition:.3s;
-    }
-    .nav-btn.active,.nav-btn:hover{
-      background:var(--acento);color:var(--texto);
-      box-shadow:0 4px 12px rgba(0,0,0,.15);
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Comic Sans MS', 'Chilanka', cursive, sans-serif;
     }
 
-    /* Secciones */
-    .section{
-      max-width:1200px;margin:2rem auto;padding:0 1rem;
-      display:none;animation:fadeIn .5s ease;
-    }
-    .section.active{display:block;}
-    @keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
-    h2{text-align:center;font-size:2rem;font-weight:700;color:var(--secundario);margin-bottom:1rem;}
-
-    /* Cards */
-    .card{
-      background:var(--gris-card);
-      border-radius:20px;box-shadow:0 6px 24px var(--shadow);
-      padding:1.5rem;margin:1rem 0;border:1px solid var(--gris-medio);
-      transition:.3s;
-    }
-    .card:hover{transform:translateY(-4px);}
-
-    /* Retos */
-    .retos-grid{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:1.5rem;margin-top:1rem;
-    }
-    .reto-card{
-      background:#fff;border-radius:20px;border:1px solid var(--gris-medio);
-      padding:1.5rem;text-align:center;box-shadow:0 4px 20px var(--shadow);
-      transition:.3s;cursor:pointer;
-    }
-    .reto-card:hover{transform:translateY(-5px);border-color:var(--primario);}
-    .reto-card img{
-      width:80px;height:80px;margin-bottom:.8rem;
-      object-fit:contain;
-    }
-    .reto-card h3{font-weight:700;color:var(--primario);margin:.5rem 0;}
-    .reto-card p{font-size:.95rem;margin-top:.3rem;min-height:50px;}
-    .btn-cta{
-      background:var(--gradiente-boton);color:#fff;
-      padding:.5rem 1.2rem;font-weight:700;border:none;border-radius:12px;
-      margin-top:.8rem;transition:.3s;
-    }
-    .btn-cta:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.2);}
-
-    /* Beneficios */
-    .benefits{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:1.5rem;margin-top:2rem;
-    }
-    .benefit{
-      background:#fff;border-radius:16px;padding:1.2rem;text-align:center;
-      box-shadow:0 4px 16px var(--shadow);
-    }
-    .benefit h4{color:var(--primario);margin-bottom:.5rem;}
-
-    /* Modal */
-    .modal{
-      position:fixed;top:0;left:0;width:100%;height:100%;
-      background:rgba(0,0,0,.5);display:none;justify-content:center;align-items:center;z-index:1000;
-    }
-    .modal-content{
-      background:#fff;max-width:500px;width:90%;
-      border-radius:20px;padding:1.5rem;box-shadow:0 8px 32px rgba(0,0,0,.3);
-      animation:fadeIn .3s ease;
-    }
-    .modal-content img{width:70px;height:70px;margin-bottom:.5rem;}
-    .modal-content h3{color:var(--primario);margin-bottom:.8rem;}
-    .modal-content ol{padding-left:1.2rem;}
-    .modal-content li{margin-bottom:.5rem;}
-    .close-btn{
-      background:var(--secundario);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:12px;
-      margin-top:1rem;font-weight:600;cursor:pointer;
+    body {
+      background: var(--color-fondo);
+      color: var(--color-texto);
+      line-height: 1.6;
     }
 
-    footer{
-      text-align:center;background:var(--texto);color:#fff;padding:2rem;margin-top:3rem;
-      border-top-left-radius:40px;border-top-right-radius:40px;font-size:.9rem;
+    header.hero {
+      background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
+      color: white;
+      padding: 2.5rem 1rem;
+      text-align: center;
+      box-shadow: 0 8px 24px var(--shadow-suave);
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+
+    header.hero h1 {
+      font-size: 2.8rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    header.hero p {
+      font-size: 1.3rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    nav {
+      background: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      box-shadow: 0 2px 10px var(--shadow-suave);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav-btn {
+      background: none;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
+    }
+
+    .nav-btn:hover, .nav-btn.active {
+      background: var(--color-acento);
+      color: var(--color-texto);
+      box-shadow: 0 4px 12px var(--shadow-suave);
+    }
+
+    .section {
+      display: none;
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      color: var(--color-primario);
+      margin-bottom: 1rem;
+    }
+
+    p.intro {
+      text-align: center;
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto 2rem auto;
+    }
+
+    .hero-img {
+      display: block;
+      margin: 2rem auto;
+      max-width: 550px;
+      width: 90%;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    .retos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .reto-card {
+      background: white;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 5px 15px var(--shadow-suave);
+      transition: transform 0.3s ease;
+      border-top: 5px solid var(--color-secundario);
+    }
+
+    .reto-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .reto-card h3 {
+      color: var(--color-primario);
+      margin-bottom: 0.5rem;
+    }
+
+    .reto-card p {
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn-empezar {
+      background: var(--color-primario);
+      color: white;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn-empezar:hover {
+      background: #e85b2d;
+    }
+
+    footer {
+      background: var(--color-texto);
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 3rem;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      font-size: 0.9rem;
+    }
+
+    @media(max-width:768px){
+      header.hero h1 { font-size: 2.2rem; }
+      .hero-img { max-width: 90%; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Hero -->
   <header class="hero">
-    <div class="logo">🌟</div>
-    <h1>Reto Tlahtoani</h1>
-    <p class="subtitle">El programa que impulsa a los niños a desarrollar hábitos, valores y bienestar mientras se divierten.</p>
+    <h1>Bienvenido a Reto Tlahtoani</h1>
+    <p>Una plataforma exclusiva de retos mensuales de desarrollo personal para niños: divertida, educativa y transformadora. 🌟</p>
   </header>
 
-  <!-- Nav -->
   <nav>
     <button class="nav-btn active" onclick="mostrarSeccion('inicio')">Inicio</button>
     <button class="nav-btn" onclick="mostrarSeccion('retos')">Retos</button>
-    <button class="nav-btn" onclick="mostrarSeccion('galeria')">Galería</button>
-    <button class="nav-btn" onclick="mostrarSeccion('beneficios')">Beneficios</button>
+    <button class="nav-btn" onclick="mostrarSeccion('recursos')">Recursos</button>
   </nav>
 
-  <!-- Secciones -->
+  <!-- Sección Inicio -->
   <section id="inicio" class="section active">
-    <h2>Bienvenido a Reto Tlahtoani</h2>
-    <p style="text-align:center;max-width:600px;margin:0 auto;">
-      Aquí encontrarás <strong>retos divertidos, guiados y llenos de valores</strong>
-      que ayudan a tus hijos a fortalecer su autoestima, autocontrol, empatía y amor por el planeta. 🌱💫
+    <h2>¡Comienza tu Aventura!</h2>
+    <p class="intro">
+      En <strong>Reto Tlahtoani</strong> acompañamos a tus hijos a descubrir habilidades para toda la vida:
+      autocontrol, empatía, gratitud y más, de forma divertida y segura.
     </p>
+
+    <!-- Imagen heroica -->
+    <img src="A_flat,_digital_illustration_features_two_cheerful.png" 
+         alt="Ilustración de Reto Tlahtoani" 
+         class="hero-img">
   </section>
 
+  <!-- Sección Retos -->
   <section id="retos" class="section">
-    <h2>🌈 Retos Activos</h2>
-    <p style="text-align:center;">Haz clic en “Comenzar” para ver las instrucciones completas</p>
-    <div class="retos-grid" id="retosGrid"></div>
-  </section>
+    <h2>Retos Disponibles</h2>
+    <p class="intro">Cada reto está diseñado por expertos en desarrollo infantil para guiar a los niños paso a paso.</p>
 
-  <section id="galeria" class="section">
-    <h2>📸 Galería</h2>
-    <p style="text-align:center;">Fotos e historias compartidas por las familias que participan en los retos</p>
     <div class="retos-grid">
-      <div class="reto-card"><img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt=""><p>🌱 Plantitas creciendo</p></div>
-      <div class="reto-card"><img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt=""><p>😊 Sonrisas de reto</p></div>
-      <div class="reto-card"><img src="https://cdn-icons-png.flaticon.com/512/616/616655.png" alt=""><p>🚯 Héroes Cero Plástico</p></div>
+      <div class="reto-card">
+        <h3>🌟 Reto de Autoconfianza</h3>
+        <p>Descubre tu superpoder interior: ejercicios diarios de gratitud, metas y pequeños logros.</p>
+        <button class="btn-empezar" onclick="explicarReto('Autoconfianza')">¡Empezar!</button>
+      </div>
+
+      <div class="reto-card">
+        <h3>🤝 Reto de Empatía</h3>
+        <p>Aprende a escuchar, comprender y apoyar a los demás con actividades prácticas y divertidas.</p>
+        <button class="btn-empezar" onclick="explicarReto('Empatía')">¡Empezar!</button>
+      </div>
+
+      <div class="reto-card">
+        <h3>🌱 Reto de Cuidado del Planeta</h3>
+        <p>Actividades verdes: reciclaje creativo, ahorro de agua y retos ecológicos familiares.</p>
+        <button class="btn-empezar" onclick="explicarReto('Cuidado del Planeta')">¡Empezar!</button>
+      </div>
+
+      <div class="reto-card">
+        <h3>🧘‍♂️ Reto de Autocontrol</h3>
+        <p>Ejercicios de respiración, mindfulness y rutinas para manejar emociones con calma.</p>
+        <button class="btn-empezar" onclick="explicarReto('Autocontrol')">¡Empezar!</button>
+      </div>
     </div>
   </section>
 
-  <section id="beneficios" class="section">
-    <h2>🌟 Beneficios para tu Familia</h2>
-    <div class="benefits">
-      <div class="benefit">
-        <h4>Retos Nuevos Cada Mes</h4>
-        <p>Contenido fresco y divertido para mantener la motivación.</p>
+  <!-- Sección Recursos -->
+  <section id="recursos" class="section">
+    <h2>📚 Recursos para las Familias</h2>
+    <p class="intro">Descarga guías, videos y herramientas digitales para reforzar los retos en casa.</p>
+
+    <div class="retos-grid">
+      <div class="reto-card">
+        <h3>📖 Guía para Padres</h3>
+        <p>Consejos prácticos para acompañar el progreso de los niños durante los retos.</p>
+        <button class="btn-empezar">Descargar PDF</button>
       </div>
-      <div class="benefit">
-        <h4>Actividades Guiadas</h4>
-        <p>Pasos sencillos con apoyo para padres e hijos.</p>
+      <div class="reto-card">
+        <h3>🎥 Videos Tutoriales</h3>
+        <p>Clases divertidas que enseñan las actividades paso a paso.</p>
+        <button class="btn-empezar">Ver Videos</button>
       </div>
-      <div class="benefit">
-        <h4>Seguimiento Semanal</h4>
-        <p>Consejos prácticos y recordatorios para completar cada reto.</p>
-      </div>
-      <div class="benefit">
-        <h4>Comunidad Segura</h4>
-        <p>Espacio para compartir logros e inspirarse con otros niños.</p>
+      <div class="reto-card">
+        <h3>🛠️ Herramientas Creativas</h3>
+        <p>Plantillas y apps sugeridas para hacer más dinámicas las misiones.</p>
+        <button class="btn-empezar">Explorar</button>
       </div>
     </div>
   </section>
 
   <footer>
-    <p>© 2025 Reto Tlahtoani – Programa de Desarrollo Personal Infantil</p>
-    <p>¡Impulsando a los niños a convertirse en héroes cada día! 🌟</p>
+    © 2025 Reto Tlahtoani - Creando Héroes del Desarrollo Personal
   </footer>
 
-  <!-- Modal -->
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <img id="modalImg" src="" alt="">
-      <h3 id="modalTitle"></h3>
-      <p id="modalDesc"></p>
-      <h4 style="color:var(--verde);margin-top:.8rem;">Pasos para completarlo:</h4>
-      <ol id="modalSteps"></ol>
-      <button class="close-btn" onclick="cerrarModal()">Cerrar</button>
-    </div>
-  </div>
-
   <script>
-    function mostrarSeccion(id){
-      document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-      document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+    function mostrarSeccion(id) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
       document.getElementById(id).classList.add('active');
+
+      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
       event.target.classList.add('active');
     }
 
-    const retos = [
-      {
-        titulo:'💧 Héroes del Agua',
-        img:'https://cdn-icons-png.flaticon.com/512/1048/1048944.png',
-        desc:'Aprende a hidratarte y cuidar tu salud bebiendo 5 vasos de agua al día.',
-        pasos:[
-          'Marca en tu calendario cada vaso de agua que tomes.',
-          'Lleva siempre tu botellita reutilizable.',
-          'Comparte con tu familia cuántos vasos tomaste al final del día.'
-        ]
-      },
-      {
-        titulo:'👜 Supermochila',
-        img:'https://cdn-icons-png.flaticon.com/512/764/764649.png',
-        desc:'Mantén tu mochila ordenada todos los días por una semana.',
-        pasos:[
-          'Vacía tu mochila cada noche y revisa lo que no necesitas.',
-          'Guarda cada material en su compartimento.',
-          'Comparte tu “mochila ordenada” en la galería al final del reto.'
-        ]
-      },
-      {
-        titulo:'😊 Reto Sonrisa',
-        img:'https://cdn-icons-png.flaticon.com/512/742/742751.png',
-        desc:'Saluda a tres personas nuevas cada día con una sonrisa amable.',
-        pasos:[
-          'Identifica a quién puedes saludar (compañero, vecino, familiar).',
-          'Sonríe y di “¡Hola!” con voz clara.',
-          'Anota a quién saludaste para compartir tu experiencia.'
-        ]
-      },
-      {
-        titulo:'🌳 Mini Eco-Héroes',
-        img:'https://cdn-icons-png.flaticon.com/512/765/765755.png',
-        desc:'Planta una semilla en casa y cuídala por dos semanas.',
-        pasos:[
-          'Elige una semilla fácil (frijol o lenteja).',
-          'Plántala en un vaso con tierra y agua cuando sea necesario.',
-          'Observa su crecimiento y toma fotos del progreso.'
-        ]
-      },
-      {
-        titulo:'📓 Diario de Gratitud',
-        img:'https://cdn-icons-png.flaticon.com/512/2232/2232688.png',
-        desc:'Escribe o dibuja cada día algo por lo que estés agradecido.',
-        pasos:[
-          'Usa un cuaderno especial para tu diario.',
-          'Cada noche escribe o dibuja 1 cosa que agradeces.',
-          'Revisa tu diario el fin de semana para recordar momentos felices.'
-        ]
-      },
-      {
-        titulo:'🫶 Respira Hondo',
-        img:'https://cdn-icons-png.flaticon.com/512/2589/2589179.png',
-        desc:'Practica 2 minutos de respiración profunda cada mañana.',
-        pasos:[
-          'Siéntate derecho y cierra los ojos.',
-          'Inhala por la nariz contando 3 y exhala contando 3.',
-          'Hazlo 5 veces y siente tu cuerpo relajarse.'
-        ]
-      },
-      {
-        titulo:'👫 Cadena de Gracias',
-        img:'https://cdn-icons-png.flaticon.com/512/4021/4021694.png',
-        desc:'Agradece a 3 personas diferentes cada día por algo especial.',
-        pasos:[
-          'Elige a tres personas a quienes agradecer.',
-          'Diles “¡Gracias!” mirando a los ojos y sonriendo.',
-          'Cuenta tu experiencia a tu familia al final del día.'
-        ]
-      },
-      {
-        titulo:'🚯 Reto Cero Plástico',
-        img:'https://cdn-icons-png.flaticon.com/512/3084/3084198.png',
-        desc:'Usa solo botellas reutilizables por una semana completa.',
-        pasos:[
-          'Elige una botella reutilizable que te guste.',
-          'Llévala siempre contigo para evitar botellas desechables.',
-          'Marca en tu calendario cada día que logres cumplirlo.'
-        ]
-      }
-    ];
-
-    const grid = document.getElementById('retosGrid');
-    retos.forEach(r=>{
-      const card = document.createElement('div');
-      card.className='reto-card';
-      card.innerHTML=`
-        <img src="${r.img}" alt="">
-        <h3>${r.titulo}</h3>
-        <p>${r.desc}</p>
-        <button class="btn-cta" onclick="abrirModal('${r.titulo}')">Comenzar</button>
-      `;
-      grid.appendChild(card);
-    });
-
-    function abrirModal(titulo){
-      const reto = retos.find(rt=>rt.titulo===titulo);
-      document.getElementById('modalTitle').textContent = reto.titulo;
-      document.getElementById('modalDesc').textContent = reto.desc;
-      document.getElementById('modalImg').src = reto.img;
-      const stepsList = document.getElementById('modalSteps');
-      stepsList.innerHTML = '';
-      reto.pasos.forEach(p=>{
-        const li = document.createElement('li');
-        li.textContent = p;
-        stepsList.appendChild(li);
-      });
-      document.getElementById('modal').style.display='flex';
+    function explicarReto(nombre) {
+      alert(`🌟 Has seleccionado el reto de ${nombre}.
+Aquí encontrarás instrucciones paso a paso, materiales y actividades para que tu hijo aprenda y se divierta.`)
     }
-    function cerrarModal(){document.getElementById('modal').style.display='none';}
   </script>
 </body>
 </html>
