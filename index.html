@@ -3,123 +3,116 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reto Tlahtoani - Aventuras de Desarrollo Personal</title>
+  <title>Reto Tlahtoani</title>
   <style>
     :root {
-      --color-primario: #FF6B35;
-      --color-secundario: #00A5E0;
-      --color-acento: #FFD166;
-      --color-texto: #333333;
-      --color-fondo: #F8F9FA;
-      --shadow-suave: rgba(0, 0, 0, 0.1);
+      --primario: #FF6B35;      /* Naranja vibrante */
+      --secundario: #00A5E0;    /* Azul alegre */
+      --acento: #FFD166;        /* Amarillo energía */
+      --texto: #333333;
+      --fondo: #F8F9FA;
+      --blanco: #ffffff;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Comic Sans MS', 'Chilanka', cursive, sans-serif;
-    }
+    * {margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif;}
 
     body {
-      background: var(--color-fondo);
-      color: var(--color-texto);
+      background: var(--fondo);
+      color: var(--texto);
       line-height: 1.6;
     }
 
+    /* HEADER */
     header.hero {
-      background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
-      color: white;
-      padding: 2.5rem 1rem;
+      background: linear-gradient(135deg, var(--primario), var(--secundario));
+      color: var(--blanco);
+      padding: 3rem 1rem;
       text-align: center;
-      box-shadow: 0 8px 24px var(--shadow-suave);
-      border-bottom-left-radius: 20px;
-      border-bottom-right-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
     }
 
     header.hero h1 {
       font-size: 2.8rem;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
     }
 
     header.hero p {
-      font-size: 1.3rem;
-      opacity: 0.9;
+      font-size: 1.2rem;
+      opacity: 0.95;
       max-width: 600px;
       margin: 0 auto;
     }
 
     nav {
-      background: white;
+      background: var(--blanco);
       padding: 1rem;
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      box-shadow: 0 2px 10px var(--shadow-suave);
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       position: sticky;
       top: 0;
       z-index: 10;
     }
 
-    .nav-btn {
+    nav button {
       background: none;
       border: none;
-      padding: 0.6rem 1.2rem;
+      padding: 0.7rem 1.5rem;
+      margin: 0 0.5rem;
       font-size: 1rem;
-      border-radius: 25px;
       cursor: pointer;
+      border-radius: 20px;
       transition: all 0.3s ease;
-      font-weight: bold;
+      font-weight: 600;
+      color: var(--texto);
     }
 
-    .nav-btn:hover, .nav-btn.active {
-      background: var(--color-acento);
-      color: var(--color-texto);
-      box-shadow: 0 4px 12px var(--shadow-suave);
+    nav button:hover,
+    nav button.active {
+      background: var(--acento);
+      color: var(--texto);
     }
 
-    .section {
-      display: none;
+    section {
       max-width: 1200px;
       margin: 2rem auto;
       padding: 0 1rem;
-      animation: fadeIn 0.5s ease-in-out;
+      display: none;
+      animation: fadeIn 0.5s ease;
     }
 
-    .section.active {
-      display: block;
-    }
+    section.active { display: block; }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
     }
 
     h2 {
-      text-align: center;
       font-size: 2rem;
-      color: var(--color-primario);
+      color: var(--primario);
+      text-align: center;
       margin-bottom: 1rem;
     }
 
-    p.intro {
+    .intro {
       text-align: center;
-      font-size: 1.1rem;
       max-width: 700px;
-      margin: 0 auto 2rem auto;
+      margin: 0 auto 2rem;
+      font-size: 1.1rem;
     }
 
     .hero-img {
       display: block;
-      margin: 2rem auto;
-      max-width: 550px;
+      max-width: 480px;
       width: 90%;
+      margin: 0 auto 2rem;
       border-radius: 20px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-      animation: fadeIn 1.2s ease-in-out;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      animation: fadeIn 1s ease;
     }
 
+    /* GRID RETOS */
     .retos-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -128,159 +121,241 @@
     }
 
     .reto-card {
-      background: white;
+      background: var(--blanco);
       border-radius: 16px;
       padding: 1.5rem;
-      box-shadow: 0 5px 15px var(--shadow-suave);
-      transition: transform 0.3s ease;
-      border-top: 5px solid var(--color-secundario);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      border-top: 4px solid var(--secundario);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .reto-card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
 
     .reto-card h3 {
-      color: var(--color-primario);
-      margin-bottom: 0.5rem;
+      color: var(--primario);
+      margin-bottom: 0.8rem;
+      font-size: 1.3rem;
     }
 
     .reto-card p {
       font-size: 0.95rem;
       margin-bottom: 1rem;
+      flex-grow: 1;
     }
 
-    .btn-empezar {
-      background: var(--color-primario);
-      color: white;
-      padding: 0.6rem 1rem;
+    .reto-card button {
+      background: var(--secundario);
       border: none;
+      color: var(--blanco);
+      padding: 0.6rem 1rem;
       border-radius: 20px;
-      font-weight: bold;
       cursor: pointer;
-      transition: background 0.3s ease;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
     }
 
-    .btn-empezar:hover {
-      background: #e85b2d;
+    .reto-card button:hover {
+      background: var(--primario);
+    }
+
+    /* MODAL */
+    .modal {
+      display:none;
+      position:fixed;
+      top:0; left:0; right:0; bottom:0;
+      background:rgba(0,0,0,0.6);
+      justify-content:center;
+      align-items:center;
+      z-index: 100;
+    }
+
+    .modal-content {
+      background:var(--blanco);
+      padding:2rem;
+      border-radius:16px;
+      max-width:500px;
+      width:90%;
+      text-align:center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      animation: fadeIn 0.4s ease;
+    }
+
+    .modal-content h3 {
+      color:var(--primario);
+      margin-bottom:1rem;
+      font-size:1.5rem;
+    }
+
+    .modal-content ul {
+      text-align:left;
+      margin-top:1rem;
+      padding-left:1.2rem;
+    }
+
+    .modal-content button {
+      background:var(--secundario);
+      color:var(--blanco);
+      border:none;
+      padding:0.6rem 1rem;
+      margin-top:1rem;
+      border-radius:20px;
+      cursor:pointer;
+      font-weight:600;
     }
 
     footer {
-      background: var(--color-texto);
-      color: white;
+      background: var(--texto);
+      color: var(--blanco);
       text-align: center;
       padding: 1.5rem;
       margin-top: 3rem;
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
       font-size: 0.9rem;
     }
 
-    @media(max-width:768px){
-      header.hero h1 { font-size: 2.2rem; }
-      .hero-img { max-width: 90%; }
+    @media(max-width:600px) {
+      header.hero h1 {font-size: 2.2rem;}
     }
   </style>
 </head>
 <body>
 
+  <!-- HEADER -->
   <header class="hero">
-    <h1>Bienvenido a Reto Tlahtoani</h1>
-    <p>Una plataforma exclusiva de retos mensuales de desarrollo personal para niños: divertida, educativa y transformadora. 🌟</p>
+    <h1>Reto Tlahtoani</h1>
+    <p>¡Desarrolla valores, habilidades y diversión en cada reto!</p>
   </header>
 
+  <!-- NAV -->
   <nav>
-    <button class="nav-btn active" onclick="mostrarSeccion('inicio')">Inicio</button>
-    <button class="nav-btn" onclick="mostrarSeccion('retos')">Retos</button>
-    <button class="nav-btn" onclick="mostrarSeccion('recursos')">Recursos</button>
+    <button class="active" onclick="mostrarSeccion('inicio')">Inicio</button>
+    <button onclick="mostrarSeccion('retos')">Retos</button>
+    <button onclick="mostrarSeccion('beneficios')">Beneficios</button>
   </nav>
 
-  <!-- Sección Inicio -->
+  <!-- INICIO -->
   <section id="inicio" class="section active">
-    <h2>¡Comienza tu Aventura!</h2>
+    <h2>¡Bienvenido a Reto Tlahtoani!</h2>
     <p class="intro">
-      En <strong>Reto Tlahtoani</strong> acompañamos a tus hijos a descubrir habilidades para toda la vida:
-      autocontrol, empatía, gratitud y más, de forma divertida y segura.
+      Un programa exclusivo para familias que quieren impulsar el desarrollo personal de sus hijos con
+      <strong>retos divertidos, guiados y llenos de valores</strong>.
     </p>
 
-    <!-- Imagen heroica -->
-    <img src="A_flat,_digital_illustration_features_two_cheerful.png" 
-         alt="Ilustración de Reto Tlahtoani" 
-         class="hero-img">
+    <!-- Imagen -->
+    <img src="imagen.png" alt="Reto Tlahtoani Ilustración" class="hero-img">
   </section>
 
-  <!-- Sección Retos -->
+  <!-- RETOS -->
   <section id="retos" class="section">
-    <h2>Retos Disponibles</h2>
-    <p class="intro">Cada reto está diseñado por expertos en desarrollo infantil para guiar a los niños paso a paso.</p>
+    <h2>Retos Activos</h2>
+    <p class="intro">Todos los retos están disponibles para que elijas y empieces cuando quieras.</p>
 
-    <div class="retos-grid">
-      <div class="reto-card">
-        <h3>🌟 Reto de Autoconfianza</h3>
-        <p>Descubre tu superpoder interior: ejercicios diarios de gratitud, metas y pequeños logros.</p>
-        <button class="btn-empezar" onclick="explicarReto('Autoconfianza')">¡Empezar!</button>
-      </div>
-
-      <div class="reto-card">
-        <h3>🤝 Reto de Empatía</h3>
-        <p>Aprende a escuchar, comprender y apoyar a los demás con actividades prácticas y divertidas.</p>
-        <button class="btn-empezar" onclick="explicarReto('Empatía')">¡Empezar!</button>
-      </div>
-
-      <div class="reto-card">
-        <h3>🌱 Reto de Cuidado del Planeta</h3>
-        <p>Actividades verdes: reciclaje creativo, ahorro de agua y retos ecológicos familiares.</p>
-        <button class="btn-empezar" onclick="explicarReto('Cuidado del Planeta')">¡Empezar!</button>
-      </div>
-
-      <div class="reto-card">
-        <h3>🧘‍♂️ Reto de Autocontrol</h3>
-        <p>Ejercicios de respiración, mindfulness y rutinas para manejar emociones con calma.</p>
-        <button class="btn-empezar" onclick="explicarReto('Autocontrol')">¡Empezar!</button>
-      </div>
+    <div class="retos-grid" id="listaRetos">
+      <!-- Relleno dinámico -->
     </div>
   </section>
 
-  <!-- Sección Recursos -->
-  <section id="recursos" class="section">
-    <h2>📚 Recursos para las Familias</h2>
-    <p class="intro">Descarga guías, videos y herramientas digitales para reforzar los retos en casa.</p>
-
-    <div class="retos-grid">
-      <div class="reto-card">
-        <h3>📖 Guía para Padres</h3>
-        <p>Consejos prácticos para acompañar el progreso de los niños durante los retos.</p>
-        <button class="btn-empezar">Descargar PDF</button>
-      </div>
-      <div class="reto-card">
-        <h3>🎥 Videos Tutoriales</h3>
-        <p>Clases divertidas que enseñan las actividades paso a paso.</p>
-        <button class="btn-empezar">Ver Videos</button>
-      </div>
-      <div class="reto-card">
-        <h3>🛠️ Herramientas Creativas</h3>
-        <p>Plantillas y apps sugeridas para hacer más dinámicas las misiones.</p>
-        <button class="btn-empezar">Explorar</button>
-      </div>
-    </div>
+  <!-- BENEFICIOS -->
+  <section id="beneficios" class="section">
+    <h2>Beneficios para tu Hijo</h2>
+    <p class="intro">Cada reto está diseñado por especialistas para motivar el desarrollo personal, emocional y social.</p>
+    <ul style="max-width:600px;margin:0 auto;list-style:disc;padding-left:1.2rem;">
+      <li>🌱 Autodisciplina y responsabilidad</li>
+      <li>😊 Confianza en sí mismos</li>
+      <li>🤝 Empatía y trabajo en equipo</li>
+      <li>🎨 Creatividad y expresión</li>
+      <li>🧠 Gestión de emociones</li>
+      <li>🌍 Conciencia ambiental</li>
+    </ul>
   </section>
+
+  <!-- MODAL -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <h3 id="modalTitulo"></h3>
+      <p id="modalDesc"></p>
+      <ul id="modalPasos"></ul>
+      <button onclick="cerrarModal()">Cerrar</button>
+    </div>
+  </div>
 
   <footer>
-    © 2025 Reto Tlahtoani - Creando Héroes del Desarrollo Personal
+    © 2025 Reto Tlahtoani - Inspirando pequeños grandes héroes
   </footer>
 
   <script>
+    // Cambio de secciones
     function mostrarSeccion(id) {
-      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
       document.getElementById(id).classList.add('active');
-
-      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
       event.target.classList.add('active');
     }
 
-    function explicarReto(nombre) {
-      alert(`🌟 Has seleccionado el reto de ${nombre}.
-Aquí encontrarás instrucciones paso a paso, materiales y actividades para que tu hijo aprenda y se divierta.`)
+    // Datos de Retos
+    const retos = [
+      {
+        nombre:"🌱 Guardianes del Orden",
+        descripcion:"Mantén tu espacio limpio y ordenado todos los días durante una semana.",
+        pasos:["Ordena tu escritorio cada mañana","Limpia tu mochila al final del día","Ayuda a recoger el salón antes de salir"]
+      },
+      {
+        nombre:"😊 Cadena de Gracias",
+        descripcion:"Aprende a agradecer y reconocer a los demás.",
+        pasos:["Da las gracias a 3 personas al día","Escribe un dibujo/carta de agradecimiento","Comparte tu experiencia al final de la semana"]
+      },
+      {
+        nombre:"💧 Héroes del Agua",
+        descripcion:"Bebe suficiente agua y cuida el agua en casa y la escuela.",
+        pasos:["Bebe al menos 5 vasos de agua diarios","Cierra bien las llaves después de usarlas","Inspira a un amigo a unirse al reto"]
+      },
+      {
+        nombre:"🪷 Un Minuto Zen",
+        descripcion:"Aprende a calmar tu mente y cuerpo en un minuto al día.",
+        pasos:["Siéntate en silencio 1 minuto","Respira profundo y lento","Piensa en algo que te hace feliz"]
+      },
+      {
+        nombre:"🎨 Arte con Reciclaje",
+        descripcion:"Crea algo nuevo y divertido usando solo materiales reciclados.",
+        pasos:["Reúne materiales reciclados seguros","Crea tu figura o manualidad","Muéstrala a tu familia o compañeros"]
+      }
+    ];
+
+    // Cargar Retos
+    const listaRetos = document.getElementById('listaRetos');
+    retos.forEach(r=>{
+      const card = document.createElement('div');
+      card.className='reto-card';
+      card.innerHTML=`
+        <h3>${r.nombre}</h3>
+        <p>${r.descripcion}</p>
+        <button onclick="verReto('${r.nombre}')">Empezar</button>
+      `;
+      listaRetos.appendChild(card);
+    });
+
+    function verReto(nombre){
+      const reto = retos.find(rt => rt.nombre === nombre);
+      document.getElementById('modalTitulo').textContent = reto.nombre;
+      document.getElementById('modalDesc').textContent = reto.descripcion;
+      const pasos = document.getElementById('modalPasos');
+      pasos.innerHTML='';
+      reto.pasos.forEach(p=>{
+        const li=document.createElement('li');
+        li.textContent=p;
+        pasos.appendChild(li);
+      });
+      document.getElementById('modal').style.display='flex';
+    }
+
+    function cerrarModal(){
+      document.getElementById('modal').style.display='none';
     }
   </script>
 </body>
