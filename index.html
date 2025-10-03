@@ -9,6 +9,7 @@
       --primario: #FF6B35;      /* Naranja vibrante */
       --secundario: #00A5E0;    /* Azul alegre */
       --acento: #FFD166;        /* Amarillo energía */
+      --verde: #43A047;         /* Verde esperanza */
       --texto: #333333;
       --fondo: #F8F9FA;
       --blanco: #ffffff;
@@ -40,7 +41,7 @@
     header.hero p {
       font-size: 1.2rem;
       opacity: 0.95;
-      max-width: 600px;
+      max-width: 650px;
       margin: 0 auto;
     }
 
@@ -165,6 +166,40 @@
       background: var(--primario);
     }
 
+    /* BENEFICIOS */
+    .beneficios-lista {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .beneficio-card {
+      background: var(--blanco);
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: all 0.3s ease;
+      border-top: 4px solid var(--verde);
+    }
+
+    .beneficio-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .beneficio-card h3 {
+      margin-bottom: 0.8rem;
+      font-size: 1.2rem;
+      color: var(--primario);
+    }
+
+    .beneficio-card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
     /* MODAL */
     .modal {
       display:none;
@@ -257,22 +292,41 @@
     <p class="intro">Todos los retos están disponibles para que elijas y empieces cuando quieras.</p>
 
     <div class="retos-grid" id="listaRetos">
-      <!-- Relleno dinámico -->
+      <!-- Se llena dinámicamente -->
     </div>
   </section>
 
   <!-- BENEFICIOS -->
   <section id="beneficios" class="section">
     <h2>Beneficios para tu Hijo</h2>
-    <p class="intro">Cada reto está diseñado por especialistas para motivar el desarrollo personal, emocional y social.</p>
-    <ul style="max-width:600px;margin:0 auto;list-style:disc;padding-left:1.2rem;">
-      <li>🌱 Autodisciplina y responsabilidad</li>
-      <li>😊 Confianza en sí mismos</li>
-      <li>🤝 Empatía y trabajo en equipo</li>
-      <li>🎨 Creatividad y expresión</li>
-      <li>🧠 Gestión de emociones</li>
-      <li>🌍 Conciencia ambiental</li>
-    </ul>
+    <p class="intro">Cada reto ha sido diseñado por especialistas en educación socioemocional y psicopedagogía para potenciar el desarrollo integral.</p>
+
+    <div class="beneficios-lista">
+      <div class="beneficio-card">
+        <h3>🌱 Autodisciplina y Responsabilidad</h3>
+        <p>Los retos fomentan hábitos diarios positivos, como el orden y el cuidado personal.</p>
+      </div>
+      <div class="beneficio-card">
+        <h3>😊 Confianza y Autoestima</h3>
+        <p>Al cumplir sus metas, los niños ganan seguridad en sus capacidades.</p>
+      </div>
+      <div class="beneficio-card">
+        <h3>🤝 Empatía y Trabajo en Equipo</h3>
+        <p>Se promueve el respeto, el apoyo mutuo y la convivencia armónica.</p>
+      </div>
+      <div class="beneficio-card">
+        <h3>🎨 Creatividad y Expresión</h3>
+        <p>Los proyectos estimulan la imaginación y el arte como forma de comunicación.</p>
+      </div>
+      <div class="beneficio-card">
+        <h3>🧠 Gestión de Emociones</h3>
+        <p>Desarrollan autocontrol y herramientas para manejar la frustración o el estrés.</p>
+      </div>
+      <div class="beneficio-card">
+        <h3>🌍 Conciencia Ambiental</h3>
+        <p>Inspira amor por la naturaleza y hábitos sostenibles desde pequeños.</p>
+      </div>
+    </div>
   </section>
 
   <!-- MODAL -->
@@ -290,7 +344,6 @@
   </footer>
 
   <script>
-    // Cambio de secciones
     function mostrarSeccion(id) {
       document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
       document.getElementById(id).classList.add('active');
@@ -298,12 +351,12 @@
       event.target.classList.add('active');
     }
 
-    // Datos de Retos
+    // Retos
     const retos = [
       {
         nombre:"🌱 Guardianes del Orden",
         descripcion:"Mantén tu espacio limpio y ordenado todos los días durante una semana.",
-        pasos:["Ordena tu escritorio cada mañana","Limpia tu mochila al final del día","Ayuda a recoger el salón antes de salir"]
+        pasos:["Ordena tu escritorio cada mañana","Limpia tu mochila al final del día","Ayuda a recoger tu habitación o salón"]
       },
       {
         nombre:"😊 Cadena de Gracias",
@@ -324,10 +377,24 @@
         nombre:"🎨 Arte con Reciclaje",
         descripcion:"Crea algo nuevo y divertido usando solo materiales reciclados.",
         pasos:["Reúne materiales reciclados seguros","Crea tu figura o manualidad","Muéstrala a tu familia o compañeros"]
+      },
+      {
+        nombre:"📝 Diario de Gratitud",
+        descripcion:"Cada noche escribe (o dibuja) una cosa por la que estés agradecido.",
+        pasos:["Consigue un cuaderno especial","Cada noche escribe una gratitud","Revisa lo escrito al final de la semana"]
+      },
+      {
+        nombre:"🤝 Amigo Secreto Positivo",
+        descripcion:"Haz algo amable y secreto por un compañero cada día durante 5 días.",
+        pasos:["Elige un compañero en secreto","Hazle un favor o déjale una nota positiva","No reveles quién eres hasta el final"]
+      },
+      {
+        nombre:"🚯 Reto Cero Plástico",
+        descripcion:"Aprende a reducir el uso de plástico durante 7 días.",
+        pasos:["Usa solo botellas reutilizables","Evita bolsas plásticas al comprar","Inspira a otros a participar"]
       }
     ];
 
-    // Cargar Retos
     const listaRetos = document.getElementById('listaRetos');
     retos.forEach(r=>{
       const card = document.createElement('div');
